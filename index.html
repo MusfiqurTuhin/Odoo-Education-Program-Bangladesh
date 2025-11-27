@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo Education Program Bangladesh | Powered by Metamorphosis</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        odoo: {
+                            purple: '#714B67',
+                            teal: '#00A09D',
+                            dark: '#2B1C27'
+                        },
+                        slate: {
+                            50: '#F8FAFC',
+                            900: '#0F172A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles */
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .bento-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+            border-color: #CBD5E1;
+        }
+        .tab-btn.active {
+            background-color: #714B67;
+            color: white;
+            border-color: #714B67;
+        }
+        /* Hide Scrollbar */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-white text-slate-700 font-sans antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 nav-glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-4 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <!-- Logo Placeholder -->
+                    <div class="h-10 w-auto flex items-center font-display font-bold text-2xl text-odoo-purple">
+                        <span>Metamorphosis</span><span class="text-odoo-teal">.</span>
+                    </div>
+                    <div class="hidden md:block w-px h-8 bg-slate-200"></div>
+                    <div class="hidden md:flex flex-col">
+                        <span class="font-display font-bold text-lg tracking-tight text-slate-800 leading-none">Odoo Education</span>
+                        <span class="text-odoo-teal text-xs font-bold uppercase tracking-widest mt-0.5">Program Bangladesh</span>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#curriculum" class="text-sm font-medium text-slate-600 hover:text-odoo-purple transition-colors">Curriculum</a>
+                    <a href="#industry" class="text-sm font-medium text-slate-600 hover:text-odoo-purple transition-colors">Industries</a>
+                    <a href="#career" class="text-sm font-medium text-slate-600 hover:text-odoo-purple transition-colors">Class to Career</a>
+                    <button onclick="scrollToContact()" class="bg-odoo-purple hover:bg-odoo-dark text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        University Sign Up
+                    </button>
+                </div>
+
+                <button onclick="toggleMenu()" class="lg:hidden text-slate-700 p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden bg-white border-t border-slate-100 hidden shadow-xl">
+            <div class="px-6 py-6 space-y-4">
+                <a href="#curriculum" class="block text-slate-600 font-medium">Curriculum</a>
+                <a href="#industry" class="block text-slate-600 font-medium">Industries</a>
+                <a href="#career" class="block text-slate-600 font-medium">Class to Career</a>
+                <button onclick="scrollToContact()" class="w-full bg-odoo-purple text-white py-3 rounded-xl font-bold mt-4">Sign Up Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-odoo-teal/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 -z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="text-center lg:text-left reveal active">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 shadow-sm mb-8">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-odoo-teal opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-odoo-teal"></span>
+                        </span>
+                        <span class="text-xs font-bold text-slate-600 tracking-wide uppercase">Facilitated by Metamorphosis Ltd.</span>
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-display font-extrabold text-slate-900 leading-[1.1] mb-6">
+                        Build a Business <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-odoo-purple to-odoo-teal">Management Course</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                        Get <strong>24 months of free Odoo Enterprise</strong> licenses. We provide the software, cloud hosting, and faculty training—completely free for Bangladeshi universities.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <button onclick="scrollToContact()" class="bg-odoo-purple hover:bg-odoo-dark text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                            <span>Get Free Access</span> <i class="fas fa-arrow-right text-sm"></i>
+                        </button>
+                        <button onclick="document.getElementById('curriculum').scrollIntoView({behavior: 'smooth'})" class="bg-white text-slate-700 border border-slate-200 px-8 py-4 rounded-full font-bold hover:border-slate-300 hover:bg-slate-50 transition-all">
+                            View Syllabus
+                        </button>
+                    </div>
+                </div>
+                <!-- Hero Visual: 3D Style Card -->
+                <div class="relative flex justify-center reveal active delay-100">
+                    <div class="relative w-full max-w-md bg-white border border-slate-100 rounded-[2rem] p-8 shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-odoo-purple rounded-xl flex items-center justify-center text-white font-bold text-2xl">O</div>
+                                <div>
+                                    <h3 class="text-slate-900 font-bold text-lg">University Portal</h3>
+                                    <p class="text-xs text-slate-500">Dhaka Region</p>
+                                </div>
+                            </div>
+                            <div class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Active</div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex justify-between items-center">
+                                <div><p class="text-xs text-slate-500 uppercase font-bold">Installations</p><p class="text-2xl font-bold text-slate-800">99,350+</p></div>
+                                <i class="fas fa-download text-slate-300 text-2xl"></i>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex justify-between items-center">
+                                <div><p class="text-xs text-slate-500 uppercase font-bold">Local Jobs</p><p class="text-2xl font-bold text-odoo-teal">1,500+</p></div>
+                                <i class="fas fa-briefcase text-slate-300 text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem: Disjointed vs Integrated -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="text-odoo-teal font-bold tracking-widest uppercase text-xs">The Reality Check</span>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-900 mt-3 mb-6">Stop Teaching "Siloed" Tools</h2>
+                <p class="text-lg text-slate-600">Modern businesses don't use disjointed spreadsheets. They use integrated ERPs.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Old Way -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm reveal relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity"><i class="fas fa-network-wired text-9xl"></i></div>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-red-50 text-red-500 rounded-xl flex items-center justify-center text-xl"><i class="fas fa-times"></i></div>
+                        <h3 class="text-xl font-bold text-slate-900">Disjointed Network</h3>
+                    </div>
+                    <div class="relative h-64 w-full border-2 border-dashed border-slate-200 rounded-2xl flex items-center justify-center bg-slate-50">
+                        <!-- Simulated Chaos -->
+                        <span class="absolute top-4 left-4 text-xs bg-white px-2 py-1 shadow-sm border border-slate-200 rounded text-slate-500 font-bold">Excel</span>
+                        <span class="absolute bottom-8 right-8 text-xs bg-white px-2 py-1 shadow-sm border border-slate-200 rounded text-slate-500 font-bold">Tally</span>
+                        <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-slate-300 font-bold text-4xl opacity-20">CHAOS</span>
+                        <div class="absolute inset-0" style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; opacity: 0.3;"></div>
+                    </div>
+                </div>
+
+                <!-- New Way -->
+                <div class="bg-white p-8 rounded-3xl border-2 border-odoo-teal/20 shadow-lg reveal delay-100 relative overflow-hidden">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-odoo-teal text-white rounded-xl flex items-center justify-center text-xl"><i class="fas fa-check"></i></div>
+                        <h3 class="text-xl font-bold text-slate-900">Integrated Platform</h3>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <div class="bg-white p-3 rounded-xl shadow-sm text-center"><i class="fas fa-chart-pie text-odoo-purple mb-2"></i><p class="text-[10px] font-bold uppercase text-slate-500">Accounting</p></div>
+                        <div class="bg-white p-3 rounded-xl shadow-sm text-center"><i class="fas fa-users text-blue-500 mb-2"></i><p class="text-[10px] font-bold uppercase text-slate-500">CRM</p></div>
+                        <div class="bg-white p-3 rounded-xl shadow-sm text-center"><i class="fas fa-boxes text-orange-500 mb-2"></i><p class="text-[10px] font-bold uppercase text-slate-500">Inventory</p></div>
+                        <div class="bg-white p-3 rounded-xl shadow-sm text-center"><i class="fas fa-globe text-indigo-500 mb-2"></i><p class="text-[10px] font-bold uppercase text-slate-500">Web</p></div>
+                        <div class="bg-odoo-purple p-3 rounded-xl shadow-md text-center transform scale-110"><span class="text-white font-bold text-xs">Odoo</span></div>
+                        <div class="bg-white p-3 rounded-xl shadow-sm text-center"><i class="fas fa-industry text-slate-600 mb-2"></i><p class="text-[10px] font-bold uppercase text-slate-500">Mfg</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Positioning Matrix -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-6">Strategic Positioning</h2>
+                    <p class="text-lg text-slate-600 mb-6">
+                        Odoo hits the <strong>"Sweet Spot"</strong>: covering complex business needs while maintaining consumer-grade usability.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-slate-700"><i class="fas fa-check-circle text-odoo-teal"></i> Single App for Everything</li>
+                        <li class="flex items-center gap-3 text-slate-700"><i class="fas fa-check-circle text-odoo-teal"></i> User Friendly Interface</li>
+                        <li class="flex items-center gap-3 text-slate-700"><i class="fas fa-check-circle text-odoo-teal"></i> Open Source Flexibility</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100 relative aspect-square md:aspect-[4/3] reveal delay-100">
+                    <!-- HTML CSS Plot -->
+                    <div class="absolute left-8 bottom-8 top-8 w-px bg-slate-300"></div>
+                    <div class="absolute left-8 bottom-8 right-8 h-px bg-slate-300"></div>
+                    <div class="absolute left-2 top-1/2 -rotate-90 text-xs font-bold text-slate-400 tracking-widest">SCOPE</div>
+                    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs font-bold text-slate-400 tracking-widest">USABILITY</div>
+                    
+                    <!-- Points -->
+                    <div class="absolute top-[10%] right-[10%] flex flex-col items-center animate-float">
+                        <div class="w-12 h-12 rounded-full bg-odoo-purple text-white flex items-center justify-center font-bold shadow-lg z-10">Odoo</div>
+                        <span class="text-xs font-bold text-odoo-purple mt-2 bg-purple-50 px-2 py-1 rounded">Winner</span>
+                    </div>
+                    <div class="absolute top-[20%] left-[20%] w-3 h-3 bg-slate-400 rounded-full"></div>
+                    <div class="absolute bottom-[20%] right-[20%] w-3 h-3 bg-slate-400 rounded-full"></div>
+                    <div class="absolute top-[20%] left-[20%] text-xs text-slate-400 mt-4">Legacy ERP</div>
+                    <div class="absolute bottom-[20%] right-[20%] text-xs text-slate-400 mt-4">Simple Apps</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Curriculum Tabs -->
+    <section id="curriculum" class="py-24 bg-slate-50 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl font-display font-bold text-slate-900 mb-4">Detailed Curriculum</h2>
+                <p class="text-slate-600">15-week modular plan covering 7 core domains.</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex overflow-x-auto pb-4 gap-3 justify-start lg:justify-center mb-10 scrollbar-hide px-4">
+                <button onclick="switchTab('purchase')" class="tab-btn active px-6 py-2.5 rounded-full border border-slate-200 bg-white text-slate-600 font-semibold whitespace-nowrap transition-all">Purchase</button>
+                <button onclick="switchTab('sales')" class="tab-btn px-6 py-2.5 rounded-full border border-slate-200 bg-white text-slate-600 font-semibold whitespace-nowrap transition-all">Sales & CRM</button>
+                <button onclick="switchTab('inventory')" class="tab-btn px-6 py-2.5 rounded-full border border-slate-200 bg-white text-slate-600 font-semibold whitespace-nowrap transition-all">Inventory</button>
+                <button onclick="switchTab('mfg')" class="tab-btn px-6 py-2.5 rounded-full border border-slate-200 bg-white text-slate-600 font-semibold whitespace-nowrap transition-all">Manufacturing</button>
+                <button onclick="switchTab('hr')" class="tab-btn px-6 py-2.5 rounded-full border border-slate-200 bg-white text-slate-600 font-semibold whitespace-nowrap transition-all">HR</button>
+                <button onclick="switchTab('accounting')" class="tab-btn px-6 py-2.5 rounded-full border border-slate-200 bg-white text-slate-600 font-semibold whitespace-nowrap transition-all">Accounting</button>
+            </div>
+
+            <!-- Content -->
+            <div id="tab-content" class="bg-white rounded-[2rem] p-8 md:p-12 border border-slate-200 shadow-sm min-h-[300px] flex items-center transition-all duration-300">
+                <!-- Content Injected JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Tracks (Bento) -->
+    <section id="industry" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-display font-bold text-slate-900 mb-2">Industry Tracks</h2>
+                <p class="text-slate-500">Tailored for Bangladesh's economy.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Trading -->
+                <div class="bento-card p-8 rounded-3xl reveal">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fas fa-exchange-alt"></i></div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Trading</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li>• Purchase & Sales Orders</li>
+                        <li>• Stock Control & Forecasting</li>
+                        <li>• Supplier Relations</li>
+                    </ul>
+                </div>
+                <!-- E-commerce -->
+                <div class="bento-card md:col-span-2 p-8 rounded-3xl bg-gradient-to-br from-slate-50 to-white border-slate-100 reveal delay-100 flex items-center gap-8">
+                    <div class="flex-1">
+                        <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center text-xl mb-6"><i class="fas fa-shopping-cart"></i></div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-4">E-commerce</h3>
+                        <ul class="space-y-2 text-sm text-slate-600">
+                            <li>• Online Store Setup</li>
+                            <li>• Payment Gateways</li>
+                            <li>• POS Synchronization</li>
+                        </ul>
+                    </div>
+                    <div class="hidden md:block w-1/3 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="h-2 w-full bg-slate-100 rounded mb-2"></div>
+                        <div class="h-2 w-2/3 bg-slate-100 rounded"></div>
+                    </div>
+                </div>
+                <!-- Manufacturing -->
+                <div class="bento-card md:col-span-2 p-8 rounded-3xl reveal delay-200">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Manufacturing (RMG)</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-slate-50 p-3 rounded-lg text-center"><p class="text-xs font-bold text-slate-500">MRP</p></div>
+                        <div class="bg-slate-50 p-3 rounded-lg text-center"><p class="text-xs font-bold text-slate-500">BOM</p></div>
+                        <div class="bg-slate-50 p-3 rounded-lg text-center"><p class="text-xs font-bold text-slate-500">Quality</p></div>
+                    </div>
+                </div>
+                <!-- Services -->
+                <div class="bento-card p-8 rounded-3xl reveal delay-300">
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Services</h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li>• Contract Mgmt</li>
+                        <li>• Timesheet Billing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Class to Career -->
+    <section id="career" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl font-display font-bold text-slate-900">Class to Career</h2>
+                <p class="text-slate-500 mt-4">5 Steps to Employment.</p>
+            </div>
+            <div class="hidden lg:flex justify-between items-start relative">
+                <div class="absolute top-8 left-0 w-full h-1 bg-slate-200 -z-10"></div>
+                <div class="flex flex-col items-center w-48 text-center reveal"><div class="w-16 h-16 bg-white border-4 border-slate-200 text-slate-400 rounded-full flex items-center justify-center font-bold text-xl mb-4">1</div><h4 class="font-bold text-slate-800">Integration</h4></div>
+                <div class="flex flex-col items-center w-48 text-center reveal delay-100"><div class="w-16 h-16 bg-white border-4 border-slate-200 text-slate-400 rounded-full flex items-center justify-center font-bold text-xl mb-4">2</div><h4 class="font-bold text-slate-800">Diploma</h4></div>
+                <div class="flex flex-col items-center w-48 text-center reveal delay-200"><div class="w-16 h-16 bg-white border-4 border-slate-200 text-slate-400 rounded-full flex items-center justify-center font-bold text-xl mb-4">3</div><h4 class="font-bold text-slate-800">CVs</h4></div>
+                <div class="flex flex-col items-center w-48 text-center reveal delay-300"><div class="w-16 h-16 bg-white border-4 border-slate-200 text-slate-400 rounded-full flex items-center justify-center font-bold text-xl mb-4">4</div><h4 class="font-bold text-slate-800">Consultant</h4></div>
+                <div class="flex flex-col items-center w-48 text-center reveal delay-400"><div class="w-16 h-16 bg-odoo-teal text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 shadow-lg"><i class="fas fa-briefcase"></i></div><h4 class="font-bold text-odoo-teal">Job</h4></div>
+            </div>
+            <!-- Mobile Vertical Fallback -->
+            <div class="lg:hidden space-y-8 pl-8 border-l-2 border-slate-200 ml-4">
+                <div class="relative"><div class="absolute -left-[41px] top-0 w-10 h-10 bg-white border-4 border-slate-200 rounded-full flex items-center justify-center font-bold text-xs">1</div><h4 class="font-bold">Integration</h4></div>
+                <div class="relative"><div class="absolute -left-[41px] top-0 w-10 h-10 bg-white border-4 border-slate-200 rounded-full flex items-center justify-center font-bold text-xs">2</div><h4 class="font-bold">Diploma</h4></div>
+                <div class="relative"><div class="absolute -left-[41px] top-0 w-10 h-10 bg-odoo-teal text-white rounded-full flex items-center justify-center font-bold text-xs"><i class="fas fa-check"></i></div><h4 class="font-bold text-odoo-teal">Job</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-display font-bold text-slate-900 mb-12">Global Success</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 reveal">
+                    <h4 class="font-bold text-lg mb-2">Higher Colleges of Technology</h4>
+                    <p class="text-sm text-slate-600">HRIS Focus: 4-workshop series on Payroll & Data.</p>
+                </div>
+                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 reveal delay-100">
+                    <h4 class="font-bold text-lg mb-2">Middlesex University Dubai</h4>
+                    <p class="text-sm text-slate-600">SCM Focus: 1,000+ students taught Supply Chain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center md:text-left">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-white font-bold text-2xl mb-6">Metamorphosis Ltd.</h3>
+                    <p class="mb-4">Apt 1B, House 860-861, Road 12, Avenue 3,<br>Mirpur DOHS, Dhaka 1216</p>
+                    <p>+880 1924 572887 | info@metamorphosis.com.bd</p>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-3xl">
+                    <h4 class="text-white font-bold text-lg mb-4">Schedule Campus Visit</h4>
+                    <form onsubmit="event.preventDefault(); alert('Sent!');" class="space-y-4">
+                        <input type="text" placeholder="Name" class="w-full bg-slate-900 border-none rounded-lg px-4 py-3 text-white">
+                        <input type="email" placeholder="Email" class="w-full bg-slate-900 border-none rounded-lg px-4 py-3 text-white">
+                        <button class="w-full bg-odoo-teal text-white font-bold py-3 rounded-lg">Request</button>
+                    </form>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-slate-800 text-center text-xs">
+                &copy; 2025 Metamorphosis Ltd.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Toggle Menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Tab Data
+        const modules = {
+            purchase: { title: "Purchase", desc: "RFQ, PO Generation, Vendor Bills", icon: "fa-shopping-bag", color: "text-purple-600" },
+            sales: { title: "Sales", desc: "Leads, Quotations, Invoicing", icon: "fa-chart-line", color: "text-blue-600" },
+            inventory: { title: "Inventory", desc: "Stock, Warehouses, Replenishment", icon: "fa-boxes", color: "text-orange-500" },
+            mfg: { title: "Manufacturing", desc: "BOM, Work Orders, Planning", icon: "fa-industry", color: "text-teal-600" },
+            hr: { title: "HR", desc: "Recruitment, Appraisals, Payroll", icon: "fa-users", color: "text-pink-600" },
+            accounting: { title: "Accounting", desc: "Journals, Bank Rec, Reporting", icon: "fa-file-invoice", color: "text-emerald-600" }
+        };
+
+        function switchTab(key) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if(btn.dataset.tab === key) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            const data = modules[key];
+            const content = document.getElementById('tab-content');
+            content.innerHTML = `
+                <div class="flex flex-col items-center text-center w-full animate-float">
+                    <i class="fas ${data.icon} text-5xl ${data.color} mb-4"></i>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-2">${data.title}</h3>
+                    <p class="text-slate-500">${data.desc}</p>
+                </div>
+            `;
+        }
+
+        // Init
+        switchTab('purchase');
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
